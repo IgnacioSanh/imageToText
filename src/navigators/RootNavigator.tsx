@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { ScreenNames, RootNavigatorParamList } from '~types';
-import { HomeScreen, DetailScreen } from '@screens';
+import { HomeScreen, DetailScreen, AddImageScreen } from '@screens';
 
 const Stack = createNativeStackNavigator<RootNavigatorParamList>();
 
@@ -18,6 +18,7 @@ export default function RootNavigator() {
           options={{ headerShown: false }}
         />
         <Stack.Screen name={ScreenNames.DETAIL} component={DetailScreen} />
+        <Stack.Screen name={ScreenNames.ADD_IMAGE} component={AddImageScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

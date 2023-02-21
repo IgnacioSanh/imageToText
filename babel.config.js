@@ -11,8 +11,10 @@ module.exports = {
           '@screens': './src/screens',
           '~utils': './src/utils',
           '~types': './src/types',
+          '~store': './src/store',
         },
       },
     ],
+    ['module:react-native-dotenv'],
   ],
 };

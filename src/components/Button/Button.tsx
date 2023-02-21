@@ -5,12 +5,12 @@ import { H1 } from '@theme';
 
 interface ButtonProps {
   label: string;
-  handlePress: () => void;
+  onPress: () => void;
 }
 
-export default function Button({ label, handlePress }: ButtonProps) {
+export default function Button({ label, onPress }: ButtonProps) {
   return (
-    <TouchableOpacity style={{ backgroundColor: 'pink' }} onPress={handlePress}>
+    <TouchableOpacity style={{ backgroundColor: 'pink' }} onPress={onPress}>
       <H1>{label}</H1>
     </TouchableOpacity>
   );

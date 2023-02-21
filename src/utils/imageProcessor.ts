@@ -1,18 +1,21 @@
-async function imageToText(imageUri: string, imageName: string = 'image') {
+import axios, { AxiosResponse } from 'axios';
+import { API_NINJA_URL, API_NINJA_API_KEY } from '@env';
+import { ImageProcessorResponse } from '~types';
+
+async function imageToText(imageUri: string, imageName = 'image') {
   const formData = new FormData();
   formData.append('image', {
     uri: imageUri,
-    name: 'image',
+    name: imageName,
     type: 'image/jpeg',
   });
-  const result = await axios.post(
-    'https://api.api-ninjas.com/v1/imagetotext',
-    formData,
-    {
-      headers: { 'X-Api-Key': 'V16CVG4OUBL+mJ41VKqfZQ==5GtmEFnm58ofIm0L' },
-    },
-  );
-  console.log(result.data);
+  const result = await axios.post<
+    FormData,
+    AxiosResponse<ImageProcessorResponse[]>
+  >(`${API_NINJA_URL}/v1/imagetotext`, formData, {
+    headers: { 'X-Api-Key': `${API_NINJA_API_KEY}` },
+  });
+  return result.data.reduce((prev, curr) => `${prev} ${curr.text}`, '');
 }
 
 export default {

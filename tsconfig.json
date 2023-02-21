@@ -13,7 +13,9 @@
       "@screens": ["src/screens/index"],
       "~utils/*": ["src/utils/*"],
       "~utils": ["src/utils/index"],
+      "~store/*": ["src/store/*"],
       "~types": ["src/types/index"]
-    }
+    },
+    "typeRoots": ["src/types"]
   }
 }

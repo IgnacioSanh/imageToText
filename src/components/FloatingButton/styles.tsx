@@ -11,5 +11,5 @@ export const Button = styled.TouchableOpacity`
   align-items: center;
   position: absolute;
   bottom: 10px;
-  right: 60px;
+  right: 30px;
 `;
