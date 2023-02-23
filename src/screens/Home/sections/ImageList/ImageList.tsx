@@ -67,6 +67,7 @@ export default function ImageList() {
         )}
         renderItem={renderItem}
         showsVerticalScrollIndicator={false}
+        stickySectionHeadersEnabled
       />
     </>
   );

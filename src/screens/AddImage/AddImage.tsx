@@ -38,7 +38,7 @@ export default function AddImage({ navigation }: AddImageProps) {
     setImageText(imageTextResponse);
     const translatedText = MOCK_TEXT
       ? 'Esto es complicado'
-      : await TranslatorUtil.translate(imageTextResponse);
+      : await TranslatorUtil.translate(imageTextResponse!);
     setTranslation(translatedText);
   }
 
