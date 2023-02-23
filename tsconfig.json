@@ -1,6 +1,7 @@
 {
   "extends": "@tsconfig/react-native/tsconfig.json",
   "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "paths": {
       "@theme/*": ["src/theme/*"],
@@ -16,6 +17,7 @@
       "~store/*": ["src/store/*"],
       "~types": ["src/types/index"]
     },
-    "typeRoots": ["src/types"]
-  }
+    "typeRoots": ["src/types", "node_modules/@types"]
+  },
+  "exclude": ["node_modules"]
 }

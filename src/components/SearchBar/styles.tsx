@@ -9,6 +9,7 @@ export const InputWrapper = styled.View`
   border-radius: 20px;
   flex-direction: row;
   justify-content: space-between;
+  margin-bottom: ${Spacings.small}px;
 `;
 
 export const SearchButton = styled.View`

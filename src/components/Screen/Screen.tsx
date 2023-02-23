@@ -9,7 +9,7 @@ interface ScreenProps {
 
 export default function Screen({ children }: ScreenProps) {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ backgroundColor: 'white' }}>
       <Wrapper>{children}</Wrapper>
     </SafeAreaView>
   );

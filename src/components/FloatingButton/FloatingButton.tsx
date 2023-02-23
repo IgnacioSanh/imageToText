@@ -10,8 +10,8 @@ interface FloatingButtonProps {
 
 export default function FloatingButton({ handlePress }: FloatingButtonProps) {
   return (
-    <Button onPress={handlePress}>
-      <FontAwesomeIcon icon={faCamera} size={30} />
+    <Button onPress={handlePress} testID="floating-button">
+      <FontAwesomeIcon icon={faCamera} size={30} testID="icon" />
     </Button>
   );
 }

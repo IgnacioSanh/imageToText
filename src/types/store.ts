@@ -3,10 +3,9 @@ import { Dispatch, SetStateAction } from 'react';
 export interface SavedImage {
   name: string;
   uri: string;
-  originalWidth: number;
-  originHeight: number;
-  text?: string;
-  translation?: string;
+  text: string;
+  translation: string;
+  date: Date;
 }
 
 export interface ImageStoreContext {

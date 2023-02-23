@@ -1,17 +1,27 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
 
-import { H1 } from '@theme';
+import { Wrapper } from './styles';
+
+import { H1 } from '@theme/typography';
 
 interface ButtonProps {
   label: string;
+  enabled?: boolean;
   onPress: () => void;
 }
 
-export default function Button({ label, onPress }: ButtonProps) {
+export default function Button({
+  label,
+  enabled = true,
+  onPress,
+}: ButtonProps) {
   return (
-    <TouchableOpacity style={{ backgroundColor: 'pink' }} onPress={onPress}>
+    <Wrapper
+      onPress={onPress}
+      enabled={enabled}
+      testID="button"
+      activeOpacity={enabled ? 0.7 : 1}>
       <H1>{label}</H1>
-    </TouchableOpacity>
+    </Wrapper>
   );
 }

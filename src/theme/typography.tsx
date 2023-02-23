@@ -16,8 +16,23 @@ export const H2 = styled.Text`
   color: ${Colors.gray};
 `;
 
+export const StandardFontSize = 16;
+
 export const StandardFont = styled.Text`
   font-family: 'Roboto';
-  font-size: 16px;
-  color: ${Colors.black};
+  font-size: ${StandardFontSize}px;
+  color: ${Colors.gray};
+`;
+
+export const StandardBoldFont = styled.Text`
+  font-family: 'Roboto';
+  font-size: ${StandardFontSize}px;
+  color: ${Colors.gray};
+  font-weight: 600;
+`;
+
+export const SmallFont = styled.Text`
+  font-family: 'Roboto';
+  font-size: 12px;
+  color: ${Colors.gray};
 `;

@@ -1,6 +1,7 @@
 export const BorderRadius = {
   fullRounded: 100,
   rounded: 25,
+  bordered: 10,
 };
 
 export const Spacings = {
