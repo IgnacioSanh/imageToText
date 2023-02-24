@@ -8,3 +8,8 @@ export interface ImageProcessorResponse {
   bounding_box: BoundingBox;
   text: string;
 }
+
+export enum MediaOrigin {
+  GALLERY = 'GALLERY',
+  CAMERA = 'CAMERA',
+}

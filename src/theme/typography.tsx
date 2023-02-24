@@ -34,5 +34,5 @@ export const StandardBoldFont = styled.Text`
 export const SmallFont = styled.Text`
   font-family: 'Roboto';
   font-size: 12px;
-  color: ${Colors.gray};
+  color: ${Colors.black};
 `;

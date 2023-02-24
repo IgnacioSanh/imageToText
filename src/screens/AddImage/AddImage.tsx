@@ -11,7 +11,12 @@ import { ImageButton, ImageTextTranslation } from './components';
 
 import { ButtonsWrapper, Input } from './styles';
 import { useImageProvider } from '~store/imageProvider';
-import { RootNavigatorParamList, SavedImage, ScreenNames } from '~types';
+import {
+  MediaOrigin,
+  RootNavigatorParamList,
+  SavedImage,
+  ScreenNames,
+} from '~types';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 const MOCK_TEXT = true;
@@ -28,9 +33,12 @@ export default function AddImage({ navigation }: AddImageProps) {
 
   const { images, setImages } = useImageProvider();
 
-  async function openGallery() {
+  async function selectImage(mediaOrigin: MediaOrigin) {
     try {
-      const response = await PhoneImageUtil.pickImageFromGallery();
+      const response =
+        mediaOrigin === MediaOrigin.GALLERY
+          ? await PhoneImageUtil.pickImageFromGallery()
+          : await PhoneImageUtil.takePicture();
       setImageToSave(image => ({
         ...image,
         uri: response?.uri,
@@ -97,12 +105,12 @@ export default function AddImage({ navigation }: AddImageProps) {
             <ImageButton
               icon={faImages}
               title="Gallery"
-              onPress={openGallery}
+              onPress={() => selectImage(MediaOrigin.GALLERY)}
             />
             <ImageButton
               icon={faCameraAlt}
               title="Camera"
-              onPress={openGallery}
+              onPress={() => selectImage(MediaOrigin.CAMERA)}
             />
           </ButtonsWrapper>
         </>
