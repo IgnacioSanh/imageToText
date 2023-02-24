@@ -12,7 +12,7 @@ export const InputWrapper = styled.View`
   margin-bottom: ${Spacings.small}px;
 `;
 
-export const SearchButton = styled.View`
+export const SearchButton = styled.TouchableOpacity`
   background-color: ${Colors.primary};
   border-top-right-radius: ${BorderRadius.fullRounded}px;
   border-bottom-right-radius: ${BorderRadius.fullRounded}px;

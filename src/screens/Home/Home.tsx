@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import { SearchBar, FloatingButton, Screen } from '@components';
@@ -14,12 +14,21 @@ type HomeProps = NativeStackScreenProps<
 >;
 
 export default function Home({ navigation }: HomeProps) {
+  const [filterText, setFilterText] = useState<string>();
   const { images } = useImageProvider();
+
+  const filteredImages = filterText
+    ? images.filter(image => image.name === filterText)
+    : images;
 
   return (
     <Screen>
-      <SearchBar />
-      {images.length > 0 ? <ImageListSection /> : <NoImagesSection />}
+      <SearchBar search={text => setFilterText(text)} />
+      {images.length > 0 ? (
+        <ImageListSection images={filteredImages} />
+      ) : (
+        <NoImagesSection />
+      )}
       <FloatingButton
         handlePress={() => navigation.navigate(ScreenNames.ADD_IMAGE)}
       />

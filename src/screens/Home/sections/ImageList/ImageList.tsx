@@ -1,63 +1,33 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { SectionList, SectionListRenderItem } from 'react-native';
 
 import { SectionHeader, SectionListItem } from './components/index';
+import { SavedImage, DateSection } from '~types';
+import { DateUtil } from '~utils';
+import { data } from '~mocks/savedImage';
 
-type Item = {
-  name: string;
-  date: string;
-  imageURI?: string;
-};
+const renderItem: SectionListRenderItem<SavedImage, DateSection> = ({
+  item: { date, name, uri, id },
+}) => (
+  <SectionListItem
+    subtitle={DateUtil.formatDate(date)}
+    title={name}
+    imageURL={uri}
+    id={id}
+  />
+);
 
-interface DateSection {
-  title: string;
-  data: readonly Item[];
+const MOCK_IMAGES = true;
+
+interface ImageListProps {
+  images: SavedImage[];
 }
 
-const sections: DateSection[] = [
-  {
-    title: 'Section 1',
-    data: [
-      { name: 'Item 1', date: 'March 3, 2023' },
-      { name: 'Item 2', date: 'March 3, 2023' },
-      { name: 'Item 3', date: 'March 3, 2023' },
-      { name: 'Item 4', date: 'March 3, 2023' },
-    ],
-  },
-  {
-    title: 'Section 2',
-    data: [
-      { name: 'Item 1', date: 'March 3, 2023' },
-      { name: 'Item 2', date: 'March 3, 2023' },
-      { name: 'Item 3', date: 'March 3, 2023' },
-      { name: 'Item 4', date: 'March 3, 2023' },
-    ],
-  },
-  {
-    title: 'Section 3',
-    data: [
-      { name: 'Item 1', date: 'March 3, 2023' },
-      { name: 'Item 2', date: 'March 3, 2023' },
-      { name: 'Item 3', date: 'March 3, 2023' },
-      { name: 'Item 4', date: 'March 3, 2023' },
-    ],
-  },
-  {
-    title: 'Section 4',
-    data: [
-      { name: 'Item 1', date: 'March 3, 2023' },
-      { name: 'Item 2', date: 'March 3, 2023' },
-      { name: 'Item 3', date: 'March 3, 2023' },
-      { name: 'Item 4', date: 'March 3, 2023' },
-    ],
-  },
-];
+export default function ImageList({ images }: ImageListProps) {
+  const sections = useMemo(() => {
+    return DateUtil.groupByPeriod(MOCK_IMAGES ? [...data, ...images] : images);
+  }, [images]);
 
-const renderItem: SectionListRenderItem<Item, DateSection> = ({
-  item: { date, name },
-}) => <SectionListItem subtitle={date} title={name} />;
-
-export default function ImageList() {
   return (
     <>
       <SectionList

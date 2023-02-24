@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 
 export interface SavedImage {
+  id: string;
   name: string;
   uri: string;
   text: string;

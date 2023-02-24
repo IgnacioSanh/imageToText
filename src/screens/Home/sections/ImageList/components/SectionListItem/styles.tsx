@@ -28,7 +28,7 @@ export const RowBack = styled.View`
   flex: 1;
   flex-direction: row;
   justify-content: flex-end;
-  padding-right: 28px;
+  padding-right: ${Spacings.extraLarge}px;
 `;
 
 export const RowWrapper = styled.View`
@@ -37,4 +37,11 @@ export const RowWrapper = styled.View`
 
 export const TrashButton = styled.TouchableOpacity`
   flex: 1;
+`;
+
+export const Thumbnail = styled.Image`
+  width: 50px;
+  height: 50px;
+  background-color: ${Colors.gray};
+  margin-right: ${Spacings.small}px;
 `;

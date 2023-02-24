@@ -1,9 +1,11 @@
-import { launchImageLibrary } from 'react-native-image-picker';
+import { launchImageLibrary, Asset } from 'react-native-image-picker';
 
-async function pickImageFromGallery(): Promise<string | undefined> {
+async function pickImageFromGallery(): Promise<Asset | undefined> {
   const result = await launchImageLibrary({ mediaType: 'photo' });
-  if (result.assets) {
-    return result.assets[0].uri;
+  if (result.assets && result.assets.length > 0) {
+    return result.assets[0];
+  } else {
+    throw new Error('An error ocurred when picking an image');
   }
 }
 
