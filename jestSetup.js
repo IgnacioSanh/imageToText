@@ -1,4 +1,5 @@
 import 'react-native/jest/setup';
+import 'react-native-gesture-handler/jestSetup';
 
 import { jest } from '@jest/globals';
 

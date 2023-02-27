@@ -18,7 +18,6 @@ export default function RootNavigator() {
           component={HomeScreen}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name={ScreenNames.DETAIL} component={DetailScreen} />
         <Stack.Screen
           name={ScreenNames.ADD_IMAGE}
           component={AddImageScreen}
@@ -26,6 +25,13 @@ export default function RootNavigator() {
             header: NavigationHeader,
           }}
         />
+        {/* <Stack.Screen
+          name={ScreenNames.DETAIL}
+          component={DetailScreen}
+          options={{
+            header: NavigationHeader,
+          }}
+        /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -6,6 +6,6 @@ export enum ScreenNames {
 
 export type RootNavigatorParamList = {
   [ScreenNames.HOME]: undefined;
-  [ScreenNames.DETAIL]: undefined;
+  [ScreenNames.DETAIL]: { id: string };
   [ScreenNames.ADD_IMAGE]: undefined;
 };

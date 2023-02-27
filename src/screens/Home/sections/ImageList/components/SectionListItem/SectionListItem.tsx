@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import Toast from 'react-native-toast-message';
 import { SwipeRow } from 'react-native-swipe-list-view';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons/faTrashAlt';
@@ -37,6 +38,11 @@ export default function SectionListItem({
 
   function deleteImage() {
     setImages(images => images.filter(image => image.id !== id));
+    Toast.show({
+      type: 'info',
+      text1: 'Deleted',
+      text2: 'Your image was successfully removed from the list',
+    });
   }
 
   return (

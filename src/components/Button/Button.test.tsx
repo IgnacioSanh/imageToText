@@ -31,7 +31,7 @@ describe('Button', () => {
   test('When button is disabled, onPress is never called when pressed', () => {
     const onPressMock = jest.fn();
     const { getByTestId } = render(
-      <Button label={LABEL} onPress={onPressMock} disabled />,
+      <Button label={LABEL} onPress={onPressMock} enabled={false} />,
     );
     const button = getByTestId('button');
     expect(button.props.accessibilityState).toHaveProperty('disabled', true);

@@ -1,30 +1,21 @@
 import React from 'react';
 
-import { Screen, Button } from '@components';
-import { H1, StandardFont } from '@theme';
-import { useImageProvider } from '~store/imageProvider';
-import { SavedImage } from '~types';
+import { Screen } from '@components';
+import { RootNavigatorParamList, ScreenNames } from '~types';
+import { Image } from 'react-native';
+import { RouteProp } from '@react-navigation/native';
 
-export default function Detail() {
-  const { images, setImages } = useImageProvider();
+type DetailProps = RouteProp<RootNavigatorParamList, ScreenNames.DETAIL>;
 
-  const addImage = () => {
-    const newImage: SavedImage = {
-      name: 'New image',
-      originalWidth: 100,
-      originHeight: 100,
-      uri: 'aaa',
-    };
-    setImages(prevImages => [...prevImages, newImage]);
-  };
-
+export default function Detail({ params }: DetailProps) {
   return (
     <Screen>
-      <H1>Detail</H1>
-      {images.map((image, idx) => (
-        <StandardFont key={image.name + idx}>{image.name}</StandardFont>
-      ))}
-      <Button label="Show image picker" onPress={addImage} />
+      <Image
+        source={{ uri: uri }}
+        resizeMode="contain"
+        resizeMethod="scale"
+        style={{ flex: 1, maxHeight: 300, backgroundColor: 'gray' }}
+      />
     </Screen>
   );
 }

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 
 import { Image } from 'react-native';
+import Toast from 'react-native-toast-message';
 import { faImages } from '@fortawesome/free-solid-svg-icons/faImages';
 import { faCameraAlt } from '@fortawesome/free-solid-svg-icons/faCameraAlt';
 
 import { Screen, Button } from '@components';
-import { H1, StandardBoldFont } from '@theme';
+import { StandardBoldFont } from '@theme';
 import { PhoneImageUtil, ImageProcessorUtil, TranslatorUtil } from '~utils';
 import { ImageButton, ImageTextTranslation } from './components';
 
@@ -19,17 +20,17 @@ import {
 } from '~types';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-const MOCK_TEXT = true;
-
 type AddImageProps = NativeStackScreenProps<
   RootNavigatorParamList,
   ScreenNames.ADD_IMAGE
 >;
 
+const MOCK_TRANSLATE_TEXT = false;
+const MOCK_IMAGE_TO_TEXT = false;
+
 export default function AddImage({ navigation }: AddImageProps) {
   const [imageToSave, setImageToSave] = useState<Partial<SavedImage>>({});
   const [imageName, setImageName] = useState('');
-  const [errorMessage, setErrorMessage] = useState<string>();
 
   const { images, setImages } = useImageProvider();
 
@@ -44,14 +45,14 @@ export default function AddImage({ navigation }: AddImageProps) {
         uri: response?.uri,
         id: response?.fileName,
       }));
-      const imageTextResponse = MOCK_TEXT
+      const imageTextResponse = MOCK_IMAGE_TO_TEXT
         ? 'This is complicated'
         : await ImageProcessorUtil.imageToText(response?.uri);
       setImageToSave(image => ({
         ...image,
         text: imageTextResponse,
       }));
-      const translatedText = MOCK_TEXT
+      const translatedText = MOCK_TRANSLATE_TEXT
         ? 'Esto es complicado'
         : await TranslatorUtil.translate(imageTextResponse!);
       setImageToSave(image => ({
@@ -59,7 +60,12 @@ export default function AddImage({ navigation }: AddImageProps) {
         translation: translatedText,
       }));
     } catch (error: any) {
-      setErrorMessage(error.message);
+      console.log(error);
+      Toast.show({
+        type: 'error',
+        text1: 'An error ocurred',
+        text2: error.message ?? 'An error ocurred. Try again.',
+      });
     }
   }
 
@@ -70,13 +76,17 @@ export default function AddImage({ navigation }: AddImageProps) {
       name: imageName,
     } as SavedImage;
     setImages([...images, newImage]);
+    Toast.show({
+      type: 'success',
+      text1: 'Saved',
+      text2: 'Your image was saved correctly!',
+    });
     navigation.goBack();
   }
   const { uri, translation, text } = imageToSave as SavedImage;
 
   return (
     <Screen>
-      {errorMessage ? <H1>{errorMessage}</H1> : null}
       {uri ? (
         <>
           <Image

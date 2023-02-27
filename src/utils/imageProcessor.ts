@@ -23,7 +23,7 @@ async function imageToText(imageUri?: string) {
       },
     });
     return result.data.reduce((prev, curr) => `${prev} ${curr.text}`, '');
-  } catch (error) {
+  } catch (error: any) {
     throw new Error('An error ocurred trying to process the image to text');
   }
 }

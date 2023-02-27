@@ -1,3 +1,5 @@
+import { SafeAreaView } from 'react-native-safe-area-context';
+
 import { Colors } from '@theme/colors';
 import { BorderRadius, Spacings } from '@theme/dimensions';
 import styled from 'styled-components/native';
@@ -11,4 +13,9 @@ export const Button = styled.View`
 
 export const Wrapper = styled.TouchableOpacity`
   flex-direction: row;
+  background-color: white;
+`;
+
+export const WhiteSafeAreaView = styled(SafeAreaView)`
+  background-color: white;
 `;
