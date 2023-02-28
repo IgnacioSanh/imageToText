@@ -46,4 +46,16 @@ As the screenshots shows, the flow is the following:
 - The image will process automatically to text and translation.
 - Input a name for the image and press the save button.
 - The image will be displayed in a list, grouped by month and year.
-- You can filter by date and/or by name
+- You can filter by date and/or by name. To remove the filter, press the buttons that appears below. To search a file name, you need to press the zoom icon button.
+
+Inside the code, there are options that you can enable/disable to mock some results.
+In `src/screens/AddImage/AddImage.tsx` line 28 and 29, you can change the value to true to mock the response of the API. This is because the API sometimes fails when you make too much requests in short period of time.
+In `src/screens/Home/sections/ImageList/ImageList` line 20, you can see how it looks with mocked results for different days.
+
+## Improvements for the future
+- Improve the unit and component testing.
+- Create integration tests.
+- Improve the search by name method.
+- Fetch the device language to change the translation destination language.
+- Preserve the state in Context API using local storage (since we don't have an API).
+- Create a Detail screen, so we can see previous results from the list.
